@@ -87,7 +87,13 @@ See the accompanying LICENSE file for applicable license.
 
   <!-- INTELLECTUAL PROPERTY: Publisher - prolog/publisher -->
   <xsl:template match="*[contains(@class,' topic/publisher ')]" mode="gen-metadata">
-    <meta name="DC.publisher" content="{normalize-space(.)}"/>
+    <xsl:variable name="text">
+      <xsl:for-each select="*">
+        <xsl:value-of select="normalize-space(.)"/>
+        <xsl:text> </xsl:text>
+      </xsl:for-each>
+    </xsl:variable>
+    <meta name="DC.publisher" content="{normalize-space($text)}"/>
   </xsl:template>
 
   <!-- Usage Rights - prolog/permissions -->
